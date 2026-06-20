@@ -1,0 +1,39 @@
+Connect Four is a two-player connection game where the players take turns placing their pieces in a 7x6 grid. The first player to connect four of their pieces in a row, column, or diagonal wins.
+
+entities
+    - player
+    - game
+    - board
+
+    Game is responsible to create players and boards and other game functionality like did anyone win
+    Board is responsible for placing moves and let the game know has anyone won
+    Player is responsible for nothing so far but player color
+
+Questions :
+    1. How do a player interact with the game? Do they specify the row and column
+    2. If someone's drops a disk my mistake at an already filled column should I throw an error?
+    3. Do I need to support one game at a time or concurrent games
+    4. Is the board always 7x6
+
+
+Class Design
+
+    class Game:
+        board : Board
+        player1 : Player
+        player2 : Player
+        currentPlayer : Player
+        state : GameState // In progress, won, draw
+        winner : Player? // not null
+
+    class Board:
+        row : 6
+        column : 7
+        grid : DisColor[row][col]
+
+    class Player :
+        name : string
+        color : DiscColor
+
+    enum DiscColor :
+        RED, YELLOW
